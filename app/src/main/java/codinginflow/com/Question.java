@@ -5,15 +5,22 @@ public class Question {
     private String option1;
     private String option2;
     private String option3;
+    private int optionAValue;
+    private int optionBValue;
+    private int optionCValue;
+
 
     public Question() {
     }
 
-    public Question(String question, String option1, String option2, String option3) {
+    public Question(String question, String option1, String option2, String option3,  int optionAValue, int optionBValue, int optionCValue) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
+        this.optionAValue = optionAValue;
+        this.optionBValue = optionBValue;
+        this.optionCValue = optionCValue;
     }
 
     public String getQuestion() {
@@ -47,5 +54,17 @@ public class Question {
     public void setOption3(String option3) {
         this.option3 = option3;
     }
+
+    public int getOptionAValue() {
+        return optionAValue;
+    }
+
+    public int getOptionBValue() {
+        return optionBValue;
+    }
+    public int getOptionCValue() {
+        return optionCValue;
+    }
+
 
 }
