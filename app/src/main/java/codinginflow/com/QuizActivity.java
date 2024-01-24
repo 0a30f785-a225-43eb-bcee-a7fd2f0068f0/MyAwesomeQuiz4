@@ -103,18 +103,14 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void checkAnswer() {
-        answered = true;
-
-        RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
-        int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
-
-        if (answerNr == currentQuestion.getAnswerNr()) {
-            score++;
-            textViewScore.setText("Score: " + score);
+    private void accumulateScores() {
+        if (rb1.isChecked()) {
+            totalScore += getScoreForRadioButton(rb1);
+        } else if (rb2.isChecked()) {
+            totalScore += getScoreForRadioButton(rb2);
+        } else if (rb3.isChecked()) {
+            totalScore += getScoreForRadioButton(rb3);
         }
-
-        showSolution();
     }
 
     private void showSolution() {

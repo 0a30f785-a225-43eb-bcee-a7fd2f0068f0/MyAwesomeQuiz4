@@ -35,7 +35,10 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuizContract.QuestionsTable.COLUMN_QUESTION + " TEXT, " +
                 QuizContract.QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuizContract.QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
-                QuizContract.QuestionsTable.COLUMN_OPTION3 + " TEXT " +
+                QuizContract.QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
+                QuizContract.QuestionsTable.COLUMN_OPTION_A_VALUE  + " INTEGER, " +
+                QuizContract.QuestionsTable.COLUMN_OPTION_B_VALUE  + " INTEGER, " +
+                QuizContract.QuestionsTable.COLUMN_OPTION_C_VALUE  + " INTEGER " +
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
@@ -67,6 +70,9 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION1, question.getOption1());
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
+        cv.put(QuestionsTable.COLUMN_OPTION_A_VALUE, question.getOptionAValue());
+        cv.put(QuestionsTable.COLUMN_OPTION_B_VALUE, question.getOptionBValue());
+        cv.put(QuestionsTable.COLUMN_OPTION_C_VALUE, question.getOptionCValue());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
