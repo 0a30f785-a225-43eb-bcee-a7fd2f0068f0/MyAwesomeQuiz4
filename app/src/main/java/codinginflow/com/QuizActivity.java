@@ -18,8 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
-
-
+    private int totalScore = 0;
     public static final String EXTRA_SCORE = "extraScore";
     private TextView textViewQuestion;
     private TextView textViewScore;
@@ -69,12 +68,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!answered) {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked()) {
-                        checkAnswer();
+                        accumulateScores();
+                        showNextQuestion();
                     } else {
                         Toast.makeText(QuizActivity.this, "Please select an answer", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    showNextQuestion();
                 }
             }
         });
@@ -113,32 +111,89 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void showSolution() {
-        rb1.setTextColor(Color.RED);
-        rb2.setTextColor(Color.RED);
-        rb3.setTextColor(Color.RED);
-
-        switch (currentQuestion.getAnswerNr()) {
-            case 1:
-                rb1.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Answer 1 is correct");
+    private int getScoreForRadioButton(RadioButton radioButton) {
+        // Implement logic to map radio buttons to scores based on trait
+        // Example: If trait is A, return currentQuestion.getOptionAValue(), and so on
+        int traitValue = 0;
+        // Extract the trait associated with the selected radio button
+        String trait = extractTraitFromRadioButton(radioButton);
+        switch (trait) {
+            case "A":
+                traitValue = currentQuestion.getOptionAValue();
                 break;
-            case 2:
-                rb2.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Answer 2 is correct");
+            case "B":
+                traitValue = currentQuestion.getOptionBValue();
                 break;
-            case 3:
-                rb3.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Answer 3 is correct");
+            case "C":
+                traitValue = currentQuestion.getOptionCValue();
                 break;
         }
+        return traitValue;
+    }
 
-        if (questionCounter < questionCountTotal) {
-            buttonConfirmNext.setText("Next");
+    private String extractTraitFromRadioButton(RadioButton radioButton) {
+        // Assuming you have identifiers for your radio buttons (e.g., R.id.rb1, R.id.rb2, R.id.rb3)
+
+        // Determine trait based on the radio button's identifier
+        if (radioButton == rb1) {
+            return "A";
+        } else if (radioButton == rb2) {
+            return "B";
+        } else if (radioButton == rb3) {
+            return "C";
         } else {
-            buttonConfirmNext.setText("Finish");
+            return ""; // Default or handle other cases
         }
     }
+
+    private void computePersonality() {
+        // Implement your logic to compute personality based on the total score
+        // Update UI, store results, etc.
+        // Example: Display a Toast with the computed personality
+        String personality = determinePersonality(totalScore);
+        Toast.makeText(getApplicationContext(), "Your personality is influenced by " + personality, Toast.LENGTH_SHORT).show();
+    }
+
+    private String determinePersonality(int totalScore) {
+        // Implement your logic to map the total score to a personality trait
+        // Adjust this logic based on your specific requirements
+        if (totalScore <= 10) {
+            return "Trait A";
+        } else if (totalScore <= 20) {
+            return "Trait B";
+        } else {
+            return "Trait C";
+        }
+    }
+
+
+
+//    private void showSolution() {
+//        rb1.setTextColor(Color.RED);
+//        rb2.setTextColor(Color.RED);
+//        rb3.setTextColor(Color.RED);
+//
+//        switch (currentQuestion.getAnswerNr()) {
+//            case 1:
+//                rb1.setTextColor(Color.GREEN);
+//                textViewQuestion.setText("Answer 1 is correct");
+//                break;
+//            case 2:
+//                rb2.setTextColor(Color.GREEN);
+//                textViewQuestion.setText("Answer 2 is correct");
+//                break;
+//            case 3:
+//                rb3.setTextColor(Color.GREEN);
+//                textViewQuestion.setText("Answer 3 is correct");
+//                break;
+//        }
+//
+//        if (questionCounter < questionCountTotal) {
+//            buttonConfirmNext.setText("Next");
+//        } else {
+//            buttonConfirmNext.setText("Finish");
+//        }
+//    }
 
     private void finishQuiz() {
         Intent resultIntent = new Intent();
