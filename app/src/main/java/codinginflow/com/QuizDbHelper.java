@@ -35,8 +35,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuizContract.QuestionsTable.COLUMN_QUESTION + " TEXT, " +
                 QuizContract.QuestionsTable.COLUMN_OPTION1 + " TEXT, " +
                 QuizContract.QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
-                QuizContract.QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
-                QuizContract.QuestionsTable.COLUMN_ANSWER_NR + " INTEGER" +
+                QuizContract.QuestionsTable.COLUMN_OPTION3 + " TEXT " +
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
@@ -50,15 +49,15 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("A is correct", "A", "B", "C", 1);
+        Question q1 = new Question("A is correct", "A", "B", "C");
         addQuestion(q1);
-        Question q2 = new Question("B is correct", "A", "B", "C", 2);
+        Question q2 = new Question("B is correct", "A", "B", "C");
         addQuestion(q2);
-        Question q3 = new Question("C is correct", "A", "B", "C", 3);
+        Question q3 = new Question("C is correct", "A", "B", "C");
         addQuestion(q3);
-        Question q4 = new Question("A is correct again", "A", "asd", "123123", 1);
+        Question q4 = new Question("A is correct again", "A", "asd", "123123");
         addQuestion(q4);
-        Question q5 = new Question("B is correct again", "A", "B", "C", 2);
+        Question q5 = new Question("B is correct again", "A", "B", "C");
         addQuestion(q5);
     }
 
@@ -68,7 +67,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION1, question.getOption1());
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
-        cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
@@ -84,7 +82,6 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption1(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_OPTION3)));
-                question.setAnswerNr(c.getInt(c.getColumnIndexOrThrow(QuestionsTable.COLUMN_ANSWER_NR)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
