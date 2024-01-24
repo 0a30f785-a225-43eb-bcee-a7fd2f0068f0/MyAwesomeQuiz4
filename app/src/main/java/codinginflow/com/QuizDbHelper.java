@@ -52,16 +52,36 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("A is correct", "A", "B", "C", 2, 3, 4);
+        Question q1 = new Question("If you had to choose a color to describe your ideal vacation, would it be:", "Calm and serene beaches", "Energetic and bustling city", "Tranquil nature retreat", 2, 3, 4);
         addQuestion(q1);
-        Question q2 = new Question("B is correct", "A", "B", "C", 2, 3, 4);
+        Question q2 = new Question("When faced with a challenge, do you tend to:", "Analyze and plan", "Take decisive action", "Seek harmony and collaboration", 2, 3, 4);
         addQuestion(q2);
-        Question q3 = new Question("C is correct", "A", "B", "C", 2, 3, 4);
+        Question q3 = new Question("In a group project, are you more likely to:", "Focus on details and accuracy", "Take charge and lead", "Ensure everyone's opinions are considered", 2, 3, 4);
         addQuestion(q3);
-        Question q4 = new Question("A is correct again", "A", "asd", "123123", 2, 3, 4);
+        Question q4 = new Question("How do you approach making decisions?", "With careful consideration and logic", "Quickly and decisively", "Seeking consensus and input from others", 2, 3, 4);
         addQuestion(q4);
-        Question q5 = new Question("B is correct again", "A", "B", "C", 2, 3, 4);
+        Question q5 = new Question("When it comes to organization and planning, are you:", "Methodical and organized", "Spontaneous and adaptable", "Flexible and easygoing", 2, 3, 4);
         addQuestion(q5);
+        Question q6 = new Question("In a group setting, do you prefer:", "Meaningful one-on-one conversations", "Group discussions and debates", "Creating a harmonious and friendly atmosphere", 2, 3, 4);
+        addQuestion(q6);
+        Question q7 = new Question("When it comes to personal goals, are you more focused on:", "Achieving personal growth and knowledge", "Attaining success and recognition", "Building strong relationships and connections", 2, 3, 4);
+        addQuestion(q7);
+        Question q8 = new Question("In a work environment, do you prefer:", "A structured and organized workspace", "A dynamic and fast-paced environment", "A collaborative and team-oriented atmosphere", 2, 3, 4);
+        addQuestion(q8);
+        Question q9 = new Question("How would you describe your communication style?", "Thoughtful and precise", "Direct and assertive", "Diplomatic and empathetic", 2, 3, 4);
+        addQuestion(q9);
+        Question q10 = new Question("When faced with change, do you typically:", "Approach it cautiously and adapt slowly", "Embrace it with enthusiasm and energy", "Take charge and lead the way", 2, 3, 4);
+        addQuestion(q10);
+        Question q11 = new Question("How do you prefer to unwind after a long day?", "Reading or engaging in a quiet activity", "Exercising or participating in a high-energy activity", "Spending time with loved ones", 2, 3, 4);
+        addQuestion(q11);
+        Question q12 = new Question("In a conflict, do you tend to:", "Analyze the situation and seek a logical resolution", "Address it head-on and assertively", "Mediate and find common ground", 2, 3, 4);
+        addQuestion(q12);
+        Question q13 = new Question("What type of books or movies do you enjoy the most?", "Thought-provoking and informative", "Action-packed and exciting", "Heartwarming and relational", 2, 3, 4);
+        addQuestion(q13);
+        Question q14 = new Question("How do you approach meeting new people?", "Observing and analyzing before engaging", "Taking charge and initiating conversation", "Building connections slowly and steadily", 2, 3, 4);
+        addQuestion(q14);
+        Question q15 = new Question("If you were planning a special celebration, what kind of event would you prefer?", " A sophisticated dinner party with close friends", "An energetic dance party with a lively atmosphere", "A cozy gathering with family in a natural setting", 2, 3, 4);
+        addQuestion(q15);
     }
 
     private void addQuestion(Question question) {

@@ -2,7 +2,7 @@ package codinginflow.com;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import android.util.Log;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -101,15 +101,15 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void accumulateScores() {
-        if (rb1.isChecked()) {
-            totalScore += getScoreForRadioButton(rb1);
-        } else if (rb2.isChecked()) {
-            totalScore += getScoreForRadioButton(rb2);
-        } else if (rb3.isChecked()) {
-            totalScore += getScoreForRadioButton(rb3);
-        }
-    }
+//    private void accumulateScores() {
+//        if (rb1.isChecked()) {
+//            totalScore += getScoreForRadioButton(rb1);
+//        } else if (rb2.isChecked()) {
+//            totalScore += getScoreForRadioButton(rb2);
+//        } else if (rb3.isChecked()) {
+//            totalScore += getScoreForRadioButton(rb3);
+//        }
+//    }
 
     private int getScoreForRadioButton(RadioButton radioButton) {
         // Implement logic to map radio buttons to scores based on trait
@@ -119,13 +119,13 @@ public class QuizActivity extends AppCompatActivity {
         String trait = extractTraitFromRadioButton(radioButton);
         switch (trait) {
             case "A":
-                traitValue = currentQuestion.getOptionAValue();
+                traitValue = 2; // Replace with actual values from your currentQuestion object
                 break;
             case "B":
-                traitValue = currentQuestion.getOptionBValue();
+                traitValue = 3; // Replace with actual values from your currentQuestion object
                 break;
             case "C":
-                traitValue = currentQuestion.getOptionCValue();
+                traitValue = 4; // Replace with actual values from your currentQuestion object
                 break;
         }
         return traitValue;
@@ -147,6 +147,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void computePersonality() {
+        accumulateScores();
         // Implement your logic to compute personality based on the total score
         // Update UI, store results, etc.
         // Example: Display a Toast with the computed personality
@@ -158,14 +159,29 @@ public class QuizActivity extends AppCompatActivity {
         // Implement your logic to map the total score to a personality trait
         // Adjust this logic based on your specific requirements
         if (totalScore <= 10) {
-            return "Trait A";
-        } else if (totalScore <= 20) {
-            return "Trait B";
+            return "Blue";
+        } else if (totalScore <= 15) {
+            return "Red";
         } else {
-            return "Trait C";
+            return "Green";
         }
     }
 
+    private void accumulateScores() {
+        // Debug output
+        Log.d("DEBUG", "Total Score Before: " + totalScore);
+
+        if (rb1.isChecked()) {
+            totalScore += getScoreForRadioButton(rb1);
+        } else if (rb2.isChecked()) {
+            totalScore += getScoreForRadioButton(rb2);
+        } else if (rb3.isChecked()) {
+            totalScore += getScoreForRadioButton(rb3);
+        }
+
+        // Debug output
+        Log.d("DEBUG", "Total Score After: " + totalScore);
+    }
 
 
 //    private void showSolution() {
@@ -194,13 +210,31 @@ public class QuizActivity extends AppCompatActivity {
 //            buttonConfirmNext.setText("Finish");
 //        }
 //    }
+private void finishQuiz() {
+    // Accumulate scores based on selected radio button
+    accumulateScores();
 
-    private void finishQuiz() {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(EXTRA_SCORE, score);
-        setResult(RESULT_OK, resultIntent);
-        returnHome();
-    }
+    // Compute personality based on the total score
+    String personality = determinePersonality(totalScore);
+
+    // Display the result or use it as needed
+    Toast.makeText(getApplicationContext(), "Your personality is influenced by " + personality, Toast.LENGTH_SHORT).show();
+
+    // Optionally, you can pass the personality result to another activity or use it in any way you see fit
+//    Intent resultIntent = new Intent();
+//    resultIntent.putExtra(EXTRA_PERSONALITY, personality);
+//    setResult(RESULT_OK, resultIntent);
+
+    // Return to the home screen or perform other actions
+    returnHome();
+}
+
+//    private void finishQuiz() {
+//        Intent resultIntent = new Intent();
+//        resultIntent.putExtra(EXTRA_SCORE, score);
+//        setResult(RESULT_OK, resultIntent);
+//        returnHome();
+//    }
 
     private void returnHome() {
         Intent intentNew = new Intent(QuizActivity.this, StartingScreenActivity.class);
