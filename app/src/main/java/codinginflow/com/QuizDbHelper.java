@@ -17,7 +17,7 @@ import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "MyAwesomeQuiz.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private SQLiteDatabase db;
 
@@ -70,7 +70,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q8);
         Question q9 = new Question("How would you describe your communication style?", "Thoughtful and precise", "Direct and assertive", "Diplomatic and empathetic", 2, 3, 4);
         addQuestion(q9);
-        Question q10 = new Question("When faced with change, do you typically:", "Approach it cautiously and adapt slowly", "Embrace it with enthusiasm and energy", "Take charge and lead the way", 2, 3, 4);
+        Question q10 = new Question("When faced with change, do you typically:", "Approach it cautiously and adapt slowly", "Take charge and lead the way", "Embrace it with enthusiasm and energy", 2, 3, 4);
         addQuestion(q10);
         Question q11 = new Question("How do you prefer to unwind after a long day?", "Reading or engaging in a quiet activity", "Exercising or participating in a high-energy activity", "Spending time with loved ones", 2, 3, 4);
         addQuestion(q11);
