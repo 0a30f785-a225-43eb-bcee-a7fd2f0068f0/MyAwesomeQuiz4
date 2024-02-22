@@ -158,9 +158,9 @@ public class QuizActivity extends AppCompatActivity {
     private String determinePersonality(int totalScore) {
         // Implement your logic to map the total score to a personality trait
         // Adjust this logic based on your specific requirements
-        if (totalScore <= 10) {
+        if (totalScore <= 30) {
             return "Blue";
-        } else if (totalScore <= 15) {
+        } else if (totalScore <= 45) {
             return "Red";
         } else {
             return "Green";
