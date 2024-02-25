@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -146,15 +145,6 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void computePersonality() {
-        accumulateScores();
-        // Implement your logic to compute personality based on the total score
-        // Update UI, store results, etc.
-        // Example: Display a Toast with the computed personality
-        String personality = determinePersonality(totalScore);
-        Toast.makeText(getApplicationContext(), "Your personality is influenced by " + personality, Toast.LENGTH_SHORT).show();
-    }
-
     private String determinePersonality(int totalScore) {
         // Implement your logic to map the total score to a personality trait
         // Adjust this logic based on your specific requirements
@@ -218,7 +208,13 @@ private void finishQuiz() {
     String personality = determinePersonality(totalScore);
 
     // Display the result or use it as needed
-    Toast.makeText(getApplicationContext(), "Your personality is influenced by " + personality, Toast.LENGTH_SHORT).show();
+    //Toast.makeText(getApplicationContext(), "Your personality is influenced by " + personality, Toast.LENGTH_SHORT).show();
+
+    // Assuming you are starting ResultActivity from ActivityA
+    Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
+    intent.putExtra("personality", personality);
+    startActivity(intent);
+
 
     // Optionally, you can pass the personality result to another activity or use it in any way you see fit
 //    Intent resultIntent = new Intent();
@@ -226,7 +222,8 @@ private void finishQuiz() {
 //    setResult(RESULT_OK, resultIntent);
 
     // Return to the home screen or perform other actions
-    returnHome();
+    // Disable ko muna kasi gumamit na ng intent sa taas
+    //goToResultActivity();
 }
 
 //    private void finishQuiz() {
@@ -236,8 +233,8 @@ private void finishQuiz() {
 //        returnHome();
 //    }
 
-    private void returnHome() {
-        Intent intentNew = new Intent(QuizActivity.this, StartingScreenActivity.class);
+    private void goToResultActivity() {
+        Intent intentNew = new Intent(QuizActivity.this, ResultActivity.class);
         startActivity(intentNew);
     }
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:padding="16dp"
+    tools:context=".ResultActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_view_reveal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your personality is"
+                android:textColor="@color/white"
+                android:textSize="38sp"
+                android:layout_marginTop="190dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/text_view_personality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_reveal"
+                android:text="Your Personality"
+                android:textColor="@color/white"
+                android:textSize="44sp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/text_view_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_personality"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:text="test"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:layout_marginTop="48dp"
+                android:inputType="textMultiLine"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
